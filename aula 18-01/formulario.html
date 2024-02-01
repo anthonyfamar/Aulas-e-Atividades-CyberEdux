@@ -1,0 +1,63 @@
+<!--faça um formulário com 
+nome, sobrenome, data de nascimento, email, telefone
+cidade, botoes "cadastrar" e "limpar"-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" content="text/css" href="style.css"/>
+        <title>Formulário de Cadastro</title>
+    </head>
+    <body>
+        <form>
+        <fieldset>
+            <legend>Formulário</legend>
+            <div>
+                <label> 
+                    Nome:
+                    <input type="text" name="nome">
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Sobrenome:
+                    <input type="text" name="sobrenome">
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Data de nascimento:
+                    <input type="date" name="data">
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Email:
+                    <input type="email" name="email">
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Telefone:
+                    <input type="number" name="numero">
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Cidade:
+                    <input type="text" name="cidade">
+                </label>
+            </div>
+
+            <button type="submit">Cadastrar</button>
+            <button type="reset">limpar</button>
+        </fieldset>
+        </form>
+    </body>
+</html>
