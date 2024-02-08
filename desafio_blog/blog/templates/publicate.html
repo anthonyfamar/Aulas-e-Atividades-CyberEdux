@@ -24,16 +24,20 @@
             </form>
         </div>
     </nav>
-    <main class="container mt-3">
-        <h1>New Publication</h1>
+    <main class="container mt-4">
+        <h1 class="mb-4 " style="text-align: center;">New Publication</h1>
         <form method="POST">
             {% csrf_token %}
+            <div class="mb-4">
+                <label for="date" class="form-label">Publication date</label>
+                <input type="date" class="form-control" name="date">
+            </div>
             <div class="mb-4">
                 <label for="author" class="form-label">Author</label>
                 <input type="text" class="form-control" name="author">
             </div>
             <div class="mb-4">
-                <label for="content" class="form-label">Image</label>
+                <label for="image" class="form-label">Image</label>
                 <input type="file" class="form-control" name="image">
             </div>
             <div class="mb-4">
