@@ -20,33 +20,13 @@
             <a class="navbar-brand">Blog Automobilístico</a>
             <form class="d-flex">
                 <a href="publicate"  class="btn btn-primary me-2">Write</a>
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
                 <button class="btn btn-success" type="submit">Search</button>
             </form>
         </div>
     </nav>
 
     <main class="container">
-        <div class="row bg-light m-3 border p-3">
-            <div class="row align-items-center">
-                <div class="col-auto">
-                    <img src="{% static 'pic.png' %}" width="32px">
-                </div>
-                <div class="col">
-                    <strong>Fulaninho de Tal</strong>
-                </div>
-                <div class="col-auto">
-                    23/01/24
-                </div>
-            </div>
-            <div class="row mt-3" style="text-align: justify;">
-                <div class="col truncatewords:40">
-                    {{ "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."|truncatewords:40 }}
-                </div>
-                <a href="artigo" style="text-align: right;">Ler mais</a>
-            </div>
-        </div>
-
         {% for post in posts%}
         <div class="row bg-light m-3 border p-3">
             <div class="row align-items-center">
@@ -64,7 +44,7 @@
                         {{post.content|truncatewords:40}}
                     </div>
                 </div>
-                <a href="artigo" style="text-align: right;">Ler mais</a>
+                <a href="artigo/{{post.id}}" style="text-align: right;">Ler mais</a>
             </div>
         </div>
         {% endfor %}

@@ -7,7 +7,7 @@ urlpatterns = [
     path('', views.index),
     path('feed', views.feed),
     path('publicate', views.publicate),
-    path('artigo', views.artigo)
+    path('artigo/<int:post_id>', views.artigo, name='artigo'),
 ]
 
 if settings.DEBUG:

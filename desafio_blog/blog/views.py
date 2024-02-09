@@ -1,20 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
-from .models import Post
+from .models import Post, Comment
 
 def index(request):
     return HttpResponseRedirect ('/feed')
+
+def artigo(request, post_id):
+    post = Post.objects.get(id=post_id)
+    comments = Comment.objects.filter(post=post)
+    return render(request, 'artigo.html', {'post': post, 'comments': comments})
     
-
-def artigo(request):
-    return render(request, 'artigo.html', {'posts': Post.objects.raw("SELECT * from blog_post")})
-
 
 def feed(request):
     return render(request, 'feed.html', {'posts': Post.objects.raw("SELECT * from blog_post")})
 
 
-def publicate(request):
+def publicate(request): 
     if request.method == 'GET':
         return render(request, 'publicate.html')
     elif request.method == 'POST':
