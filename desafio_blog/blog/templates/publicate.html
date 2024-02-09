@@ -26,7 +26,7 @@
     </nav>
     <main class="container mt-4">
         <h1 class="mb-4 " style="text-align: center;">New Publication</h1>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="mb-4">
                 <label for="date" class="form-label">Publication date</label>
@@ -38,7 +38,7 @@
             </div>
             <div class="mb-4">
                 <label for="image" class="form-label">Image</label>
-                <input type="file" class="form-control" name="image">
+                <input type="file" class="form-control" name="image" accept="image/*">
             </div>
             <div class="mb-4">
                 <label for="content" class="form-label">Content</label>
@@ -46,7 +46,7 @@
             </div>
             <div class="d-flex justify-content-end">
                 <button type="reset" class="btn btn-secondary me-2">Clear</button>
-                <button type="submit" class="btn btn-primary">Publish</button>              
+                <button type="submit" class="btn btn-primary">Publish</button>       
             </div>
         </form>
     </main>

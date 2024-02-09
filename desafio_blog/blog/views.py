@@ -20,7 +20,8 @@ def publicate(request):
     elif request.method == 'POST':
         date = request.POST.get('date')
         author = request.POST.get('author')
-        image = request.POST.get('image')
+        print(request.FILES)
+        image = request.FILES['image']
         content = request.POST.get('content')
         post = Post()
         post.date = date
