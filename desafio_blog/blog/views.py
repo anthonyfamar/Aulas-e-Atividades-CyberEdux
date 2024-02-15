@@ -1,15 +1,20 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponseBadRequest
-from .models import Post, Comment
+from django.http import HttpResponseRedirect, HttpResponseBadRequest, HttpResponse
+from .models import Post
 
 def index(request):
     return HttpResponseRedirect ('/feed')
 
+def like_post(request, post_id):
+    post = Post.objects.get(id=post_id)
+    post.likes = post.likes + 1
+    post.save()
+    return HttpResponseRedirect(f'/artigo/{post_id}')
+
 def artigo(request, post_id):
     post = Post.objects.get(id=post_id)
-    comments = Comment.objects.filter(post=post)
-    return render(request, 'artigo.html', {'post': post, 'comments': comments})
-    
+    return render(request, 'artigo.html', {'post': post})
+
 
 def feed(request):
     return render(request, 'feed.html', {'posts': Post.objects.raw("SELECT * from blog_post")})

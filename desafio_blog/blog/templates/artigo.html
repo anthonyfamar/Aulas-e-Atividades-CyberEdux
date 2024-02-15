@@ -43,20 +43,30 @@
                         {{post.content}}
                     </div>
                 </div>
-                <a href="/feed" style="text-align: right;">Voltar</a>
+                <form method="post" action="/feed">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link float-end">Voltar</button>
+                </form>
+
+                <!-- <form method="post" action="/like_post/{{post.id}}/">
+                    {% csrf_token %}        
+                    <button type="submit" class="btn btn-primary position-relative">
+                        <img src="{% static 'like.png' %}" width="32px">
+                        <i class="bi bi-hand-thumbs-up"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{ post.likes }}
+                        </span>
+                    </button>
+                </form> -->
+                <a class="btn btn-primary position-relative" href="/like_post/{{post.id}}" style="width: 64px">
+                    <img src="{% static 'like.png' %}" width="32px">
+                    <i class="bi bi-hand-thumbs-up"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{ post.likes }}
+                    </span>
+                </a>
             </div>
         </div>
-        <div class="row mt-3">
-            <h3>Comments:</h3>
-            {% for comment in comments %}
-                <div class="border p-2">
-                    <p><strong>{{ comment.name }}</strong> - {{ comment.created_at }}</p>
-                    <p>{{ comment.body }}</p>
-                </div>
-            {% endfor %}
-        </div>
-    </main>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>

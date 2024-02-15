@@ -8,8 +8,9 @@ urlpatterns = [
     path('feed', views.feed),
     path('publicate', views.publicate),
     path('artigo/<int:post_id>', views.artigo, name='artigo'),
+    path('like_post/<int:post_id>/', views.like_post, name='like_post'),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+                            document_root=settings.MEDIA_ROOT)

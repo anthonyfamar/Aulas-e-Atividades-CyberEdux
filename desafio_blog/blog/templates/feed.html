@@ -44,7 +44,10 @@
                         {{post.content|truncatewords:40}}
                     </div>
                 </div>
-                <a href="artigo/{{post.id}}" style="text-align: right;">Ler mais</a>
+                <form method="post" action="artigo/{{post.id}}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link float-end">Ler mais</button>
+                </form>
             </div>
         </div>
         {% endfor %}
