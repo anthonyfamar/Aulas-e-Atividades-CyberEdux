@@ -47,19 +47,8 @@
                     {% csrf_token %}
                     <button type="submit" class="btn btn-link float-end">Voltar</button>
                 </form>
-
-                <!-- <form method="post" action="/like_post/{{post.id}}/">
-                    {% csrf_token %}        
-                    <button type="submit" class="btn btn-primary position-relative">
-                        <img src="{% static 'like.png' %}" width="32px">
-                        <i class="bi bi-hand-thumbs-up"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            {{ post.likes }}
-                        </span>
-                    </button>
-                </form> -->
-                <a class="btn btn-primary position-relative" href="/like_post/{{post.id}}" style="width: 64px">
-                    <img src="{% static 'like.png' %}" width="32px">
+                <a class="btn btn-primary position-relative" href="/like_post/{{post.id}}" style="width: 62px">
+                    👍
                     <i class="bi bi-hand-thumbs-up"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         {{ post.likes }}
