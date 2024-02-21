@@ -7,3 +7,4 @@ class Post(models.Model):
     image = models.ImageField(upload_to='images/')
     content = models.TextField()
     likes = models.IntegerField(default=0)
+    

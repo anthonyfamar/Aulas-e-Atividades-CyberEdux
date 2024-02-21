@@ -9,6 +9,8 @@ urlpatterns = [
     path('publicate', views.publicate),
     path('artigo/<int:post_id>', views.artigo, name='artigo'),
     path('like_post/<int:post_id>/', views.like_post, name='like_post'),
+    path('login', views.login),
+    path('cadastro', views.cadastro),
 ]
 
 if settings.DEBUG:
