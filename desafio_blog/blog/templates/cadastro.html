@@ -16,6 +16,7 @@
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand">Blog Automobilístico</a>
+            <a href="login" type="button" class="btn btn-info">Voltar</a>
         </div>
     </nav>
     <main class="container mt-5">
@@ -35,11 +36,12 @@
                         <label for="nomeUsuario" class="form-label text-light">Nome de usuário</label>
                         <input type="text" class="form-control" name="nomeUsuario" placeholder="Digite seu nome de usuário" autofocus="true" required>
                     </div>
-
-                    <div class="mb-3">
-                        <label for="dataNascimento" class="form-label text-light">Data de Nascimento</label>
-                        <input type="date" class="form-control" name="dataNascimento" required>
+                    
+                    {% if username_repetido %}
+                    <div class="alert alert-danger" role="alert">
+                        Nome de usuario já usado
                     </div>
+                    {% endif %}
 
                     <div class="mb-3">
                         <label for="email" class="form-label text-light">E-mail</label>

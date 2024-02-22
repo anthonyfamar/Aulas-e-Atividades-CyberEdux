@@ -17,11 +17,10 @@
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand">Blog Automobilístico</a>
+            <a class="navbar-brand">Blog Automobilístico {% if user.is_authenticated %}- {{user.username}}{% endif %}</a>
             <form class="d-flex">
                 <a href="publicate" class="btn btn-primary me-2">Write</a>
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-success" type="submit">Search</button>
+                <a href="/logout" type="button" class="btn btn-danger">Logout</a>
             </form>
         </div>
     </nav>

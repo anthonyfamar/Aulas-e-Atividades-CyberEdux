@@ -14,13 +14,17 @@ def like_post(request, post_id):
     post.save()
     return HttpResponseRedirect(f'/artigo/{post_id}')
 
+@login_required(login_url='/login')
 def artigo(request, post_id):
     post = Post.objects.get(id=post_id)
     return render(request, 'artigo.html', {'post': post})
 
 
 def feed(request):
-    return render(request, 'feed.html', {'posts': Post.objects.raw("SELECT * from blog_post")})
+    return render(request, 'feed.html', {
+        'posts': Post.objects.all(),
+        'user': request.user
+        })
 
 
 @login_required(login_url='/login')
@@ -29,8 +33,8 @@ def publicate(request):
         return render(request, 'publicate.html')
     elif request.method == 'POST':
         date = request.POST.get('date')
-        #author = request.POST.get('author')
-        author = request.user.first_name
+        author = request.POST.get('author')
+        #author = request.user.first_name
         print(request.FILES)
         image = request.FILES['image']
         content = request.POST.get('content')
@@ -44,21 +48,21 @@ def publicate(request):
     else:
         return HttpResponseBadRequest()
     
-def login(request):
+def login_view(request):
     if request.method == 'GET':
         return render(request, 'login.html', {
-            'incorrect_login': False 
+            'login_incorreto': False 
         })
     elif request.method == 'POST':
-        email = request.POST.get('email')
-        senha = request.POST.get('senha')
-        user = authenticate(request, email=email, senha=senha)
+        username = request.POST.get('nomeUsuario')
+        senha = request.POST.get('password')
+        user = authenticate(request, username=username, password=senha)
         if user is not None:
             login(request, user)
             return HttpResponseRedirect('/feed')
         else:
             return render(request, 'login.html', {
-                'incorrect_login': True 
+                'login_incorreto': True 
             })
     else:
         return HttpResponseBadRequest()
@@ -66,10 +70,16 @@ def login(request):
 
 def cadastro(request):
     if request.method == 'GET':
-        return render(request, 'cadastro.html')
+        return render(request, 'cadastro.html', {
+            'username_repetido': False
+        })
     elif request.method == 'POST':
         nomeCompleto = request.POST.get('nomeCompleto')
         nomeUsuario = request.POST.get('nomeUsuario')
+        if User.objects.filter(username=nomeUsuario).count() > 0:
+            return render(request, 'cadastro.html', {
+            'username_repetido': True
+            })
         #dataNascimento = request.POST.get('dataNascimento')
         email = request.POST.get('email')
         senha = request.POST.get('senha')
@@ -81,3 +91,8 @@ def cadastro(request):
     else:
         return HttpResponseBadRequest()
     
+    
+@login_required(login_url='/login')
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/login')
